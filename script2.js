@@ -1,107 +1,109 @@
-//putting localStorage in variable for ease of use
-var database = localStorage;
+//function that pulls the entire database from localstorage and converts it into dates
+function pullData() {
 
-//initializing temporary array to pull localstorage data into for graphs
-var currentData = [];
- 
-//pull the data from the database
-for (var i = 0; i < database.length; i++) { //iterate through the database
-	//get the key at each index, get the value (item) at each key, and convert from string back to date before pushing to array 
-    currentData.push(JSON.parse(database.getItem(database.key(i)))); 
+	//putting localStorage in variable for ease of use
+	var database = localStorage;
+
+	//initializing temporary array to pull localstorage data into for graphs
+	var currentData = [];
+	 
+	//pull the data from the database
+	for (var i = 0; i < database.length; i++) { //iterate through the database
+		//get the key at each index, get the value (item) at each key, and convert from string back to date before pushing to array 
+	    currentData.push(JSON.parse(database.getItem(database.key(i)))); 
+	}
+
+	//sort the current data because it's not sorted for some reason
+	currentData.sort(function(a,b){
+	  return new Date(a) - new Date(b);
+	})
+
+	//convert the array of strings back into dates because they're string again for some reason
+	for (i=0; i<currentData.length; i++) {
+		currentData[i] = new Date(currentData[i]);
+	}
+	return currentData;
 }
 
-//sort the current data because it's not sorted for some reason
-currentData.sort(function(a,b){
-  return new Date(a) - new Date(b);
-})
-
-//convert the array of strings back into dates because they're string again for some reason
-for (i=0; i<currentData.length; i++) {
-	currentData[i] = new Date(currentData[i]);
-}
-
-//functions to pull parts of database for graphs
-//for last minute's graph. mostly for testing
-function lastMinute(arr) {
-	var today = new Date();
-	for (i=0; i <= arr.length; i++) {
-		if ((today - arr[i]) < 600000) {
-			return i
-			break
+//functions that put the frequencies of the last minute, hour, day, or week of the pulled database info into arrays for the charts
+function lastMinute(arr) { //arr will be the data that we pulled from the database AKA localstorage
+	var index = 0; //initializing the element's index in the data that is that start of within one minute from now
+	var today = new Date(); //getting the current time
+	for (i=0; i <= arr.length; i++) { //iterates through the data, and...
+		if ((today - arr[i]) < 600000) {//once it hits an element that is within one minute of the current time...
+			index = i;//store that index and break the for loop
+			break;
 		}
 	}
+	var sFreqArray = new Array(60).fill(0); //initialize frequency array of face touches in the past minute
+	for (i=index; i <arr.length; i++) { //iterate through each of the elements in the past minute in the data
+		sFreqArray[59-Math.floor((today-arr[i])/(1000))]+=1; //store the elements by their seconds from the current time
+	}
+	return sFreqArray //return the array to be put into the chart as data
 }
 
-//for last hour's
+//comments above are valid for the next three functions as well
 function lastHour(arr) {
+	index = 0;
 	var today = new Date();
 	for (i=0; i <= arr.length; i++) {
 		if ((today - arr[i]) < 3600000) {
-			return i
+			index = i;
 			break
 		}
 	}
+	var mFreqArray = new Array(60).fill(0);
+	for (i= index; i <arr.length; i++) {
+		mFreqArray[59 - Math.floor((today - arr[i])/(60000))]+=1;
+	}
+	return mFreqArray
 }
 
 //for last day's graph
 function last24Hours(arr) {
+	index = 0;
 	var today = new Date();
 	for (i=0; i <= arr.length; i++) {
 		if ((today - arr[i]) < 86400000) {
-			return i
+			index = i;
 			break
 		}
 	}
+	var hFreqArray = new Array(24).fill(0);
+	for (i= index; i <arr.length; i++) {
+			var d = new Date();
+			hFreqArray[23- Math.floor((today- arr[i])/(3600000))]+=1;
+	}
+	return hFreqArray
 }
 
 //for last week's graph
 function last7Days(arr) {
+	index = 0;
 	var today = new Date();
 	for (i=0; i <= arr.length; i++) {
 		if ((today - arr[i]) < 604800000) {
-			return i
+			index = i;
 			break
 		}
 	}
+	var weekFreqArray = new Array(7).fill(0); 
+	for (i=index; i <arr.length; i++) {
+		weekFreqArray[6-Math.floor((today-arr[i])/(3600000*24))]+=1;
+	}
+	return weekFreqArray
 }
 
-//getting index of the temporary data array that denotes the start of each period of time
-var minuteIndex = lastMinute(currentData);//""
-var hourIndex = lastHour(currentData); //uses the function we made above with the temp array as the data
-var dayIndex = last24Hours(currentData); //uses the function we made above with the temp array as the data
-var weekIndex = last7Days(currentData); //"" 
+//ACTUALLY USING THE FUNCTIONS CREATED ABOVE TO MANIPULATE THE DATA:
 
+//pulling the data from the database
+var data = pullData();
 
-//initializing frequency arrays of when people touched their face based on the aspect we want to pull from the databse
-var sFreqArray = new Array(60).fill(0);//""
-var mFreqArray = new Array(60).fill(0);//""
-var hFreqArray = new Array(24).fill(0); //i.e. [0, 0, 0, 0, ...0], length of 24 for the hours of the day
-var weekFreqArray = new Array(7).fill(0); //i.e. [0, 0, 0, 0, 0, 0, 0, 0], length of 7 for the days of the week
-
-//fill the seconds frequency array for the chart. iterates through the database starting at one minute ago, gets the seconds of each element, and adds 1 to the count for that second in the frequency array.
-for (i= minuteIndex; i <currentData.length; i++) {
-		var d = new Date();
-		sFreqArray[59 - Math.floor((d - currentData[i])/(1000))]+=1 //finds distance in seconds between now and face touch, rounds down, and subtracts from 59 to find the index it should be put into the array at. if it happened 0 seconds ago, put it at the 59th index (aka the end)
-}
-
-//fill the minute frequency array for the chart. iterates through the database starting at one hour ago, gets the minute of each element, and adds 1 to the count for that minute in the frequency array.
-for (i= hourIndex; i <currentData.length; i++) {
-		var d = new Date();
-		mFreqArray[59 - Math.floor((d - currentData[i])/(60000))]+=1// ""
-}
-
-//fill the hour frequency array for the chart. iterates through the database starting at 24 hours ago, gets the hour of each element, and adds 1 to the count for that hour in the frequency array.
-for (i= dayIndex; i <currentData.length; i++) {
-		var d = new Date();
-		hFreqArray[23- Math.floor((d- currentData[i])/(3600000))]+=1//""
-}
-
-//fill the week frequency array for the chart. iterates through the database starting at one week ago, gets the day of each element, and adds 1 to the count for that day in the frequency array.
-for (i=weekIndex; i <currentData.length; i++) {
-		var d = new Date();
-		weekFreqArray[6-Math.floor((d-currentData[i])/(3600000*24))]+=1//""
-}
-
+//calling the functions we just made to make the data array for the 4 charts
+sArray = lastMinute(data);
+mArray = lastHour(data);
+hArray = last24Hours(data);
+wArray = last7Days(data);
 
 //CHART CREATION STARTS HERE
 
@@ -152,7 +154,7 @@ var myChart = new Chart(ctx, {
 		datasets: [
 			{
 				label: "Last Week's Touches",
-				data: weekFreqArray,
+				data: wArray,
 				borderColor: gradientStroke,
 				backgroundColor: gradientFill
 			}
@@ -186,7 +188,7 @@ var myChart2 = new Chart(ctx2, {
 		datasets: [
 			{
 				label: "Hour's Touches",
-				data: hFreqArray,
+				data: hArray,
 				borderColor: gradientStroke,
 				backgroundColor: gradientFill
 			}
@@ -218,13 +220,13 @@ var myChart2 = new Chart(ctx2, {
 
 var ctx3 = document.getElementById("hourChart").getContext("2d");
 var myChart3 = new Chart(ctx3, {
-	type: 'bar',
+	type: 'line',
 	data: {
 		labels: minutes,
 		datasets: [
 			{
 				label: "Minute's Touches",
-				data: mFreqArray,
+				data: mArray,
 				borderColor: gradientStroke,
 				backgroundColor: gradientFill
 			}
@@ -256,13 +258,13 @@ var myChart3 = new Chart(ctx3, {
 
 var ctx4 = document.getElementById("minuteChart").getContext("2d");
 var myChart4 = new Chart(ctx4, {
-	type: 'bar',
+	type: 'line',
 	data: {
 		labels: seconds,
 		datasets: [
 			{
 				label: "Second's Touches",
-				data: sFreqArray,
+				data: sArray,
 				borderColor: gradientStroke,
 				backgroundColor: gradientFill
 			}
