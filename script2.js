@@ -35,7 +35,7 @@ function lastMinute(arr) { //arr will be the data that we pulled from the databa
 			break;
 		}
 	}
-	var sFreqArray = new Array(60).fill(0); //initialize frequency array of face touches in the past minute
+	var sFreqArray = new Array(60).fill(0); //initialize frequency array of face touches in the past minute using the index we just found above
 	for (i=index; i <arr.length; i++) { //iterate through each of the elements in the past minute in the data
 		sFreqArray[59-Math.floor((today-arr[i])/(1000))]+=1; //store the elements by their seconds from the current time
 	}
@@ -94,6 +94,7 @@ function last7Days(arr) {
 	return weekFreqArray
 }
 
+
 //ACTUALLY USING THE FUNCTIONS CREATED ABOVE TO MANIPULATE THE DATA:
 
 //pulling the data from the database
@@ -147,7 +148,7 @@ var gradientStroke = ctx.createLinearGradient(0, 0, 0, 800);
 gradientStroke.addColorStop(0, "rgba(235, 88, 51, 1)");
 gradientStroke.addColorStop(1, "rgba(255, 255, 255, 0.0)");
 
-var myChart = new Chart(ctx, {
+var weekChart = new Chart(ctx, {
 	type: 'bar',
 	data: {
 		labels: days,
@@ -181,7 +182,7 @@ var myChart = new Chart(ctx, {
 });
 
 var ctx2 = document.getElementById("dayChart").getContext("2d");
-var myChart2 = new Chart(ctx2, {
+var dayChart = new Chart(ctx2, {
 	type: 'bar',
 	data: {
 		labels: hours,
@@ -219,7 +220,7 @@ var myChart2 = new Chart(ctx2, {
 });
 
 var ctx3 = document.getElementById("hourChart").getContext("2d");
-var myChart3 = new Chart(ctx3, {
+var hourChart = new Chart(ctx3, {
 	type: 'line',
 	data: {
 		labels: minutes,
@@ -251,13 +252,18 @@ var myChart3 = new Chart(ctx3, {
 		},
 		legend: {
         	display: false
+    	},
+    	elements: {
+    		point: {
+    			radius: 0
+    		}
     	}
 	}
 
 });
 
 var ctx4 = document.getElementById("minuteChart").getContext("2d");
-var myChart4 = new Chart(ctx4, {
+var minuteChart = new Chart(ctx4, {
 	type: 'line',
 	data: {
 		labels: seconds,
@@ -289,7 +295,31 @@ var myChart4 = new Chart(ctx4, {
 		},
 		legend: {
         	display: false
+    	},
+    	elements: {
+    		point: {
+    			radius: 0
+    		}
     	}
 	}
 
 });
+
+//update the charts with a button so we don't have to refresh the page every time. eventually should update every second or something automatically
+function updateCharts() {
+	var data = pullData(); //pull the fresh, current data from the database
+
+	minuteChart.data.datasets[0].data = lastMinute(data); //replace the minute chart's first dataset's data with the fresh array
+	hourChart.data.datasets[0].data = lastHour(data); //""
+	dayChart.data.datasets[0].data = last24Hours(data); //""
+	weekChart.data.datasets[0].data = last7Days(data); //""
+
+	minuteChart.update(); //actually call the chart to update with the new data in place
+	hourChart.update(); //""
+	dayChart.update(); //""
+	weekChart.update(); //""
+}
+
+function updateLoop() {
+	setInterval(updateCharts, 1000);
+}
