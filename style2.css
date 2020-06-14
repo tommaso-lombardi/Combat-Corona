@@ -8,6 +8,73 @@ body {
   margin: 50px auto;
 }
 
+.container { 
+  height: 10px;
+  position: relative;
+  /*border: 3px solid green; */
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn-group button {
+  background-color: #4CAF50; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+  margin: 0;
+  top: 50%;
+  left: 50%;
+ 
+
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* change color of button when clicked */
+.btn-group button:focus {
+  background-color: #3e8e41;
+  border: 1px solid blue;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: white;
+}
+
+.right {
+  right: 0;
+  background-color: white;
+}
+
 h1 {
   font-weight: 200;
   font-size: 3em;
