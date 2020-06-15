@@ -141,7 +141,10 @@ hours.push("Past Hour");
 var days = ["6d ago", "5d ago", "4d ago", "3d ago", "2d ago", "1d ago", "Past 24h"];
 
 //creating the chart itself
+// var ctx = document.getElementById("chartCanvas").getContext("2d");
 var ctx = document.getElementById("chartCanvas").getContext("2d");
+
+var charts = [];
 
 var gradientFill = ctx.createLinearGradient(0, 0, 0, 800);
 gradientFill.addColorStop(0, "rgba(235, 88, 51, 1)");
@@ -200,14 +203,14 @@ function weekChart() {
 	    }
 	});
 
+	charts.push(weekChart);
 	return weekChart;
 }
 
 function dayChart() {
 	var data = pullData();
 	var hArray = last24Hours(data);
-	var ctx2 = document.getElementById("chartCanvas").getContext("2d");
-	var dayChart = new Chart(ctx2, {
+	var dayChart = new Chart(ctx, {
 		type: 'line',
 		data: {
 			labels: hours,
@@ -256,15 +259,14 @@ function dayChart() {
 		}
 
 	});
-
+		charts.push(dayChart);
 		return dayChart;
 };
 
 function hourChart() {
 	var data = pullData();
 	var mArray = lastHour(data);
-	var ctx3 = document.getElementById("chartCanvas").getContext("2d");
-	var hourChart = new Chart(ctx3, {
+	var hourChart = new Chart(ctx, {
 		data: {
 
 			labels: minutes,
@@ -307,14 +309,14 @@ function hourChart() {
 
 		});
 
+		charts.push(hourChart);
 		return hourChart
 };
 
 function minuteChart() {
 	var data = pullData();
 	var sArray = lastMinute(data);
-	var ctx4 = document.getElementById("chartCanvas").getContext("2d");
-	var minuteChart = new Chart(ctx4, {
+	var minuteChart = new Chart(ctx, {
 	type: 'bar',
 	data: {
 		labels: seconds,
@@ -356,38 +358,28 @@ function minuteChart() {
 	}
 
 });
-
-return minuteChart
+	charts.push(minuteChart);
+	return minuteChart
 }
 
-var currentMChart = minuteChart();
-var currentHChart = hourChart();
-var currentDChart = dayChart();
-var currentWChart = weekChart();
-
 function draw(time) {
-	currentMChart.destroy();
-	currentHChart.destroy();
-	currentDChart.destroy();
-	currentWChart.destroy();
+	for (i=0; i<charts.length;  i++) {
+		charts[i].destroy();
+	}
 
-	if (time == 'minute') {
+	if (time === 'minute') {
 		minuteChart();
 	}
 
-	else if (time == 'hour') {
+	else if (time === 'hour') {
 		hourChart();
 	}
 
-	else if (time == 'hour') {
-		hourChart();
-	}
-
-	else if (time == 'day') {
+	else if (time === 'day') {
 		dayChart();
 	}
 
-	else if (time == 'week') {
+	else if (time === 'week') {
 		weekChart();
 	}
 }
