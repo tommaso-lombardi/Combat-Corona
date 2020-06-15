@@ -1,0 +1,99 @@
+<!doctype html>
+
+<html>
+    <button type="button" onclick="init()">Start</button>
+    <div id="webcam-container"></div> <!-- section for the video -->
+    <div id="label-container"></div> <!-- section for the info about the video -->
+    <head>
+        <title>Combat Corona</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script> <!-- link to tensor flow library -->
+        <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script> <!-- link to teachable machine library -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script> 
+
+        <link rel="stylesheet" type="text/css" href="./style3.css"> 
+    </head>
+
+    <body>
+        <script type="text/javascript"> //Javascript section of file that creates and loads the model, then feeds the data into the database
+        // the link to your model provided by Teachable Machine export panel
+        const URL = "https://teachablemachine.withgoogle.com/models/cdCLqv5-Q/";
+
+        let model, webcam, labelContainer, maxPredictions; //creating these empty variables
+
+        var flag = false;
+
+        // Load the image model and setup the webcam
+        async function init() { 
+            const modelURL = URL + "model.json"; //url for model
+            const metadataURL = URL + "metadata.json"; //url for model metadata
+
+            model = await tmImage.load(modelURL, metadataURL); //load the model
+            maxPredictions = model.getTotalClasses();
+
+            // Convenience function to setup a webcam
+            const flip = true; // whether to flip the webcam
+            webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+            await webcam.setup(); // request access to the webcam
+            await webcam.play();
+            window.requestAnimationFrame(loop);
+
+            // append elements to the DOM
+            document.getElementById("webcam-container").appendChild(webcam.canvas); //add the webcam canvas to the webcam container
+            labelContainer = document.getElementById("label-container"); //put the logic to grab the label container in a variable for ease of use
+            for (let i = 0; i < maxPredictions; i++) { // and class labels
+                labelContainer.appendChild(document.createElement("div"));
+            }
+        }
+
+        async function loop() {
+            webcam.update(); // update the webcam frame
+            await predict(); //waits for the prediction of the AI when it runs the webcam's frame through the model
+            window.requestAnimationFrame(loop);
+        }
+
+        // run the webcam image through the image model
+        async function predict() {
+            // predict can take in an image, video or canvas html element
+            const prediction = await model.predict(webcam.canvas); 
+            for (let i = 0; i < maxPredictions; i++) {
+                //if the flag is false (meaning they were not touching face in last frame) and current prediction class is in the "Hands" phase with a 95% confidence, then count it as a face touch and flip the flag
+                if (flag === false && prediction[i].className === "Hands" && prediction[i].probability.toFixed(2) > 0.95) {
+                    flag = true;
+                    break
+                  }
+
+                //if the flag is true (meaning they were touching face in last frame) and current prediction class is in the "Hands" phase with less than 90% confidence, then finish the face touch and flip the flag back
+                if (flag === true && prediction[i].className === "Hands" && prediction[i].probability.toFixed(2) < 0.20 ) {
+                    flag = false;
+                    //when a face touching cycle ends, get the time
+                    var d = new Date();
+                    var dString = JSON.stringify(d);
+                    localStorage.setItem(JSON.stringify(d.getTime()), dString);
+                    console.log(localStorage);
+                    break
+                  }
+
+                const classPrediction =
+                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                labelContainer.childNodes[i].innerHTML = classPrediction;
+            }
+        }
+        console.log(localStorage);
+        </script>
+
+        <div class="wrapper"> <!-- segments section of html page for graph -->
+            <h1>Hands Free</h1> <!-- Title -->
+
+            <button id="show" onclick ="draw('minute')">mChart</button>
+            <button id="show" onclick ="draw('hour')">hChart</button>
+            <button id="show" onclick ="draw('day')">dChart</button>
+            <button id="show" onclick ="draw('week')">wChart</button>
+
+
+            <h2>1M</h2> <!-- Name of chart -->
+            <canvas id="chartCanvas" width="1200" height="675"></canvas> <!-- Creating chart size and location, naming it chartCanvas -->
+      </div>
+
+
+    <script src="./script3.js"></script>
+</html>
