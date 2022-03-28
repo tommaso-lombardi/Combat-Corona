@@ -1,0 +1,299 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sort",
+				"sortNumberArray"
+			],
+			[
+				"list",
+				"listOfTimes"
+			],
+			[
+				"favorit",
+				"faovirte_fruit"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/arijigarjian/Desktop/letterboxed/scripts/main.js",
+		"/Users/arijigarjian/Desktop/letterboxed/scripts/config.js",
+		"/Users/arijigarjian/Desktop/letterboxed/letterboxed.html",
+		"/Users/arijigarjian/Desktop/letterboxed/scripts/js/test.js",
+		"/Users/arijigarjian/Desktop/letterboxed/scripts/require.js",
+		"/Users/arijigarjian/Desktop/letterboxed/letterbox.js",
+		"/Users/arijigarjian/Desktop/letterboxed/test.js",
+		"/Users/arijigarjian/iCloud Drive (Archive)/Desktop/Personal/SPRING2019/BeeSolver/Project.ml",
+		"/Users/arijigarjian/Desktop/beeSolver.html",
+		"/Users/arijigarjian/Desktop/letterboxed/untitled.html",
+		"/Users/arijigarjian/Desktop/beeSolver.js",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Tommaso/script2.js",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Tommaso/style2.css",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Tommaso/Dont Mess with site2.html",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Tommaso/Dont Mess with site.html",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Tommaso/storage.js",
+		"/Users/arijigarjian/Desktop/Ari/script.js",
+		"/Users/arijigarjian/Desktop/Ari/style.css",
+		"/Users/arijigarjian/Desktop/Ari/index.html",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Ari/style.css",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Ari/script.js",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Ari/index.html",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Test/index.html",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Test/square.js",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Test/canvas.js",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Test/main.js",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Test/Module.js",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Test/Main.js",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Test/Module.mjs",
+		"/Users/arijigarjian/Desktop/face_touch_project/index.html",
+		"/Users/arijigarjian/Desktop/Combat-Corona/Dont Mess with site.html",
+		"/Users/arijigarjian/Desktop/face_touch_project/resources/css/style.css",
+		"/Users/arijigarjian/Desktop/Combat-Corona/storage.js",
+		"/Users/arijigarjian/Desktop/face_touch_project/resources/js/script.js",
+		"/Users/arijigarjian/Downloads/Dont Mess with site (1).html",
+		"/Users/arijigarjian/Desktop/chart.html",
+		"/Users/arijigarjian/Desktop/untitled.js",
+		"/Users/arijigarjian/Library/Application Support/Sublime Text 3/Packages/User/Javascript.sublime-build",
+		"/private/var/folders/_j/8120xb1923q7bb4qd7x789pw0000gn/T/com.microsoft.Excel/Repair Result to AC_Discovery_Scans_VLANs_Remediation (1)0.xml",
+		"/Users/arijigarjian/Library/Messages/Attachments/ab/11/090B8580-7B1D-4F18-A62E-11BF282FAF01/TicTacToe.py",
+		"/private/var/folders/_j/8120xb1923q7bb4qd7x789pw0000gn/T/com.microsoft.Excel/Repair Result to MDTA_Scoping_Worksheet Conduent_20190625 Samples Selected0.xml",
+		"/Users/arijigarjian/Desktop/Conduent/AC:AA/Scans/port scan/AA_PROD.xml",
+		"/Users/arijigarjian/Desktop/AirPods/Vectors/vangogh-min.svg",
+		"/Users/arijigarjian/Downloads/BasquiatCrown.svg",
+		"/Users/arijigarjian/cs3366/ps6-arijigarjian/src/README.md",
+		"/Users/arijigarjian/cs3366/ps5-arijigarjian/environments/src/typechecker.ml",
+		"/Users/arijigarjian/Desktop/BeeSolver/Project.ml",
+		"/Users/arijigarjian/Downloads/vg-0.9.2/README.md",
+		"/Users/arijigarjian/Downloads/react-1.2.1/README.md",
+		"/Users/arijigarjian/Downloads/gg-0.9.3/README.md",
+		"/Users/arijigarjian/Downloads/vg-0.9.2/myocamlbuild.ml",
+		"/Users/arijigarjian/cs3366/ps4-arijigarjian/src/eval.ml",
+		"/Users/arijigarjian/anaconda/pkgs/spyder-3.1.4-py27_0/lib/python2.7/site-packages/spyder/widgets/findreplace.py",
+		"/Users/arijigarjian/cs3366/ps4-arijigarjian/src/env.ml",
+		"/Users/arijigarjian/cs3366/ps4-arijigarjian/src/ast.ml",
+		"/Users/arijigarjian/cs3366/ps5-arijigarjian/environments/src/eval.ml",
+		"/Users/arijigarjian/cs3366/lib/code.ml",
+		"/Users/arijigarjian/Downloads/b1fbc8365f4224c4e7d91ffcf1656434-952f92d39b7ccdc4e3040a8d6fb4a0ac64fffc36/z",
+		"/Users/arijigarjian/cs3366/ps5-arijigarjian/environments/src/symbol.ml",
+		"/Users/arijigarjian/cs3366/ps4-arijigarjian/src/repl.ml",
+		"/Users/arijigarjian/cs3366/ps4-arijigarjian/src/symbol.ml",
+		"/Users/arijigarjian/cs3366/ps4-arijigarjian/src/token.ml",
+		"/Users/arijigarjian/cs3366/ps4-arijigarjian/src/repl.mli",
+		"/Users/arijigarjian/Desktop/Bee Solver/Project.ml",
+		"/Users/arijigarjian/cs3366/ps2-arijigarjian/problemset2.ml",
+		"/Users/arijigarjian/cs3366/ps4-arijigarjian/src/tokenizer.ml",
+		"/Users/arijigarjian/cs3366/ps3-arijigarjian/src/problemset3.ml",
+		"/Users/arijigarjian/Downloads/if_statement.asm",
+		"/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/Headers/Folders.h",
+		"/Users/arijigarjian/Dropbox/OBS/IBTX Project/Sample Items 1st Pass/Deep Security Server Policies.xml",
+		"/Users/arijigarjian/anaconda/pkgs/pillow-4.1.1-py27_0/lib/python2.7/site-packages/PIL/PpmImagePlugin.py",
+		"/Users/arijigarjian/Downloads/Python-2.6.9/Lib/email/test/test_email.py",
+		"/Users/arijigarjian/Desktop/CS110201/ps2-arijigarjian/src/Profile.java",
+		"/Users/arijigarjian/Desktop/CS110201/ps1-arijigarjian/four/Jack.java",
+		"/Users/arijigarjian/Downloads/Python-2.6.9/Modules/mmapmodule.c",
+		"/Users/arijigarjian/Downloads/07.1.dictionariesBSTs/optionsMaps.ml",
+		"/Users/arijigarjian/Downloads/ari/floatline.ml",
+		"/Users/arijigarjian/Desktop/MIT MEETING/voting-starter-project/README.md",
+		"/Users/arijigarjian/Desktop/CS1102/ps1/three/Hello.java",
+		"/Users/arijigarjian/Desktop/CS1102/ps1/one/Hello.java",
+		"/Users/arijigarjian/Desktop/99Problems/99-Problems-OCaml/1-10/p01.ml",
+		"/Users/arijigarjian/Desktop/CS1102/ps1/two/Hello.java",
+		"/Users/arijigarjian/Downloads/aeon-master/README.md",
+		"/Users/arijigarjian/Downloads/assignment1 (2).py",
+		"/Users/arijigarjian/Desktop/BREAK2016/Omnifood/resources/css/style.css",
+		"/Users/arijigarjian/Desktop/Cryptofund V1/resources/css/style.css",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/try_it_yourself_p93.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/try_it_yourself_5_3.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/numbered_lists_try_it_yourself.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/random",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/squares.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/even_numbers.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/numbers.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/pizzas.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/magicians.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/bicycles.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/comment.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/birthday.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/apostrophe.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/name.py",
+		"/Users/arijigarjian/Desktop/SUMMER2017/python_work/hello_world.py",
+		"/Users/arijigarjian/Desktop/hello_world2",
+		"/Users/arijigarjian/Desktop/SPRING2017/HTML/index.html"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 261.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Dont Mess with site3.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 220.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
